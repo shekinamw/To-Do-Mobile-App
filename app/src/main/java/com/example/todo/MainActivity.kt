@@ -12,6 +12,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import android.content.Intent
+
+
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +29,12 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+
+        val addButton = findViewById<FloatingActionButton>(R.id.floatingActionButton)
+        addButton.setOnClickListener {
+            val intent = Intent(this, NewTask::class.java)
+            startActivity(intent)
+        }
 
 
     }
