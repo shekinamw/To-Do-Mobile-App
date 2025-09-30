@@ -11,6 +11,7 @@ package com.example.todo
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -28,11 +29,20 @@ class NewTask : AppCompatActivity() {
             insets
         }
 
-        val backButton: Button = findViewById(R.id.back_button)
+        //Back button
+        val backButton: ImageButton = findViewById(R.id.back_button)
         backButton.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-
+            //val intent = Intent(this, MainActivity::class.java)
             finish()
+        }
+
+        //Save button
+        val saveButton: Button = findViewById(R.id.save_button)
+        saveButton.setOnClickListener {
+            //
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+
         }
 
     }

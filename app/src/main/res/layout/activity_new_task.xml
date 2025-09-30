@@ -7,12 +7,90 @@
     android:layout_height="match_parent"
     tools:context=".NewTask">
 
-    <Button
+
+    <ImageButton
         android:id="@+id/back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="67dp"
-        tools:layout_editor_absoluteY="636dp" />
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.01"
+        app:srcCompat="?attr/homeAsUpIndicator" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="326dp"
+        android:layout_height="34dp"
+        android:text="Create a new task"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.023"
+        app:layout_constraintStart_toEndOf="@+id/back_button"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
+
+    <EditText
+        android:id="@+id/new_note_title"
+        android:layout_width="309dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="48dp"
+        android:autofillHints="new note title"
+        android:ems="10"
+        android:hint="@string/note_title"
+        android:inputType="text"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/new_note_description"
+        android:layout_width="309dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="12dp"
+        android:autofillHints="new note description"
+        android:ems="10"
+        android:hint="@string/note_description"
+        android:inputType="textMultiLine"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="@+id/new_note_title"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/new_note_title"
+        app:layout_constraintTop_toBottomOf="@+id/new_note_title" />
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:text="Save"
+        app:layout_constraintEnd_toEndOf="@+id/editTextDate4"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDate4" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
+        android:layout_marginTop="88dp"
+        android:text="Enter deadline:"
+        app:layout_constraintEnd_toStartOf="@+id/editTextDate4"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/new_note_description"
+        app:layout_constraintTop_toBottomOf="@+id/new_note_description" />
+
+    <EditText
+        android:id="@+id/editTextDate4"
+        android:layout_width="210dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="72dp"
+        android:ems="10"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="@+id/new_note_description"
+        app:layout_constraintTop_toBottomOf="@+id/new_note_description" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
