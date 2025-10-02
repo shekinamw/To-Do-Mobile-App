@@ -9,16 +9,19 @@
 
     <TextView
         android:id="@+id/header"
-        android:layout_width="402dp"
-        android:layout_height="53dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:background="#36013f"
         android:text="To-Do App"
         android:textAlignment="center"
+        android:textColor="@color/white"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.888"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <SearchView
         android:id="@+id/search_bar"
@@ -26,6 +29,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="13dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:background="#FFDDDDDD"
         app:layout_constraintEnd_toEndOf="@+id/header"
         app:layout_constraintHorizontal_bias="0.642"
         app:layout_constraintStart_toStartOf="@+id/header"
@@ -67,7 +71,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/my_recycler_view"
         app:layout_constraintStart_toStartOf="@+id/my_recycler_view"
         app:layout_constraintEnd_toEndOf="@+id/my_recycler_view"
-        tools:visibility="visible" />
+         />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
