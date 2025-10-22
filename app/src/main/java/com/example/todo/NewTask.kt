@@ -39,7 +39,6 @@ class NewTask : AppCompatActivity() {
         //Save button
         val saveButton: Button = findViewById(R.id.save_button)
         saveButton.setOnClickListener {
-            //
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
 
