@@ -73,17 +73,28 @@
         app:layout_constraintStart_toStartOf="@+id/new_note_description"
         app:layout_constraintTop_toBottomOf="@+id/new_note_description" />
 
+
     <EditText
         android:id="@+id/editTextDate4"
-        android:layout_width="210dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="130dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="24dp"
+        android:autofillHints="deadline"
         android:ems="10"
         android:hint="MM/DD/YYYY"
         android:inputType="date"
-        android:autofillHints="deadline"
-        app:layout_constraintEnd_toEndOf="@+id/new_note_description"
-        app:layout_constraintTop_toBottomOf="@+id/new_note_description" />
+        app:layout_constraintTop_toBottomOf="@+id/new_note_description"
+        tools:layout_editor_absoluteX="152dp" />
+
+    <Button
+        android:id="@+id/buttonPickDate"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:text="Pick Date"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/editTextDate4"
+        tools:layout_editor_absoluteY="216dp" />
 
     <TextView
         android:id="@+id/color_label"

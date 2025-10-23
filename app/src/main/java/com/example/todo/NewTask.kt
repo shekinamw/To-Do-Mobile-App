@@ -2,7 +2,9 @@
 
 package com.example.todo
 
+import android.app.DatePickerDialog
 import android.content.Intent
+import android.icu.util.Calendar
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -38,6 +40,21 @@ class NewTask : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        //Calender
+        //dateText = findViewById(R.id.editTextDate4)
+
+        val calender = Calendar.getInstance()
+        val year = calender.get(Calendar.YEAR)
+        val month = calender.get(Calendar.MONTH)
+        val day = calender.get(Calendar.DAY_OF_MONTH)
+
+        pickDateBtn.setOnClickListener{
+            val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener{view, mYear, mMonth, mDay ->
+                //Set date textView
+                deadlineInput.setText("" + mDay + "/" + mMonth + "/" + mYear)
+            }, year, month, day)
         }
 
         // Initialize database helper
