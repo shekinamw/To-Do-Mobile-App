@@ -117,18 +117,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:buttonTint="#4ECDC4"
+            android:buttonTint="#055DE4"
             android:text="Blue"
-            android:textColor="#4ECDC4" />
+            android:textColor="#2F6BE6" />
 
         <RadioButton
             android:id="@+id/radio_green"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:buttonTint="#95E1D3"
+            android:buttonTint="#50E956"
             android:text="Green"
-            android:textColor="#95E1D3" />
+            android:textColor="#37E437" />
 
     </RadioGroup>
 
@@ -145,18 +145,18 @@
             android:id="@+id/radio_yellow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:buttonTint="#FFE66D"
+            android:buttonTint="#F2D130"
             android:text="Yellow"
-            android:textColor="#FFE66D" />
+            android:textColor="#FAD52F" />
 
         <RadioButton
             android:id="@+id/radio_purple"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:buttonTint="#B388FF"
+            android:buttonTint="#8745F8"
             android:text="Purple"
-            android:textColor="#B388FF" />
+            android:textColor="#8A4CF6" />
 
         <RadioButton
             android:id="@+id/radio_orange"
