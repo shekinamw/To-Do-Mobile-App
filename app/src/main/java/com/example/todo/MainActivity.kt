@@ -11,10 +11,12 @@ import android.content.Intent
 import android.database.Cursor
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.SearchView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.material3.Button
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -60,8 +62,8 @@ class MainActivity : AppCompatActivity() {
         // REQUIREMENT: Display all saved tasks with their colors
         loadTasksFromDatabase()
 
-        // Setup floating action button to add new tasks
-        val addButton = findViewById<FloatingActionButton>(R.id.floatingActionButton)
+        // Setup action button to add new tasks
+        val addButton = findViewById<Button>(R.id.addTaskButton)
         addButton.setOnClickListener {
             val intent = Intent(this, NewTask::class.java)
             startActivity(intent)

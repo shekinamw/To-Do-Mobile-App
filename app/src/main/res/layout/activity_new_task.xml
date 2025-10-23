@@ -5,192 +5,328 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F8F9FA"
     tools:context=".NewTask">
 
-
-    <ImageButton
-        android:id="@+id/back_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:contentDescription="Back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.01"
-        app:srcCompat="?attr/homeAsUpIndicator" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="326dp"
-        android:layout_height="34dp"
-        android:text="Create a new task"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.023"
-        app:layout_constraintStart_toEndOf="@+id/back_button"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
-
-    <EditText
-        android:id="@+id/new_note_title"
-        android:layout_width="309dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="48dp"
-        android:autofillHints="new note title"
-        android:ems="10"
-        android:hint="@string/note_title"
-        android:inputType="text"
-        android:textSize="13sp"
+    <!-- Header Toolbar -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@color/theme_primary"
+        android:elevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/new_note_description"
-        android:layout_width="309dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="12dp"
-        android:autofillHints="new note description"
-        android:ems="10"
-        android:hint="@string/note_description"
-        android:inputType="textMultiLine"
-        android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="@+id/new_note_title"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/new_note_title"
-        app:layout_constraintTop_toBottomOf="@+id/new_note_title" />
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back"
+            android:tint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="?attr/homeAsUpIndicator" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="16dp"
-        android:layout_marginTop="24dp"
-        android:text="Enter deadline:"
-        app:layout_constraintEnd_toStartOf="@+id/editTextDate4"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/new_note_description"
-        app:layout_constraintTop_toBottomOf="@+id/new_note_description" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Create New Note"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/back_button"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    <EditText
-        android:id="@+id/editTextDate4"
-        android:layout_width="130dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="24dp"
-        android:autofillHints="deadline"
-        android:ems="10"
-        android:hint="MM/DD/YYYY"
-        android:inputType="date"
+    <!-- Scrollable Content -->
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_note_description" />
+        app:layout_constraintTop_toBottomOf="@+id/header_layout">
 
-    <Button
-        android:id="@+id/buttonPickDate"
-        android:layout_width="100dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:text="Pick Date"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/editTextDate4"
-        app:layout_constraintTop_toBottomOf="@+id/new_note_description" />
-
-    <TextView
-        android:id="@+id/color_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Select Color:"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate4" />
-
-    <RadioGroup
-        android:id="@+id/color_radio_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="@+id/color_label"
-        app:layout_constraintTop_toBottomOf="@+id/color_label">
-
-        <RadioButton
-            android:id="@+id/radio_red"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:buttonTint="#FF6B6B"
-            android:text="Red"
-            android:textColor="#FF6B6B" />
+            android:padding="16dp">
 
-        <RadioButton
-            android:id="@+id/radio_blue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:buttonTint="#055DE4"
-            android:text="Blue"
-            android:textColor="#2F6BE6" />
+            <!-- Title Card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/title_card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <RadioButton
-            android:id="@+id/radio_green"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:buttonTint="#50E956"
-            android:text="Green"
-            android:textColor="#37E437" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-    </RadioGroup>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Title"
+                        android:textColor="#495057"
+                        android:textSize="14sp" />
 
-    <RadioGroup
-        android:id="@+id/color_radio_group2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="@+id/color_radio_group"
-        app:layout_constraintTop_toBottomOf="@+id/color_radio_group">
+                    <EditText
+                        android:id="@+id/new_note_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:autofillHints="new note title"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/note_title"
+                        android:inputType="text"
+                        android:textColor="#212529"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-        <RadioButton
-            android:id="@+id/radio_yellow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="#F2D130"
-            android:text="Yellow"
-            android:textColor="#FAD52F" />
+            <!-- Description Card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/description_card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_card">
 
-        <RadioButton
-            android:id="@+id/radio_purple"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:buttonTint="#8745F8"
-            android:text="Purple"
-            android:textColor="#8A4CF6" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-        <RadioButton
-            android:id="@+id/radio_orange"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:buttonTint="#FF9F43"
-            android:text="Orange"
-            android:textColor="#FF9F43" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Description"
+                        android:textColor="#495057"
+                        android:textSize="14sp" />
 
-    </RadioGroup>
+                    <EditText
+                        android:id="@+id/new_note_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:layout_marginTop="8dp"
+                        android:autofillHints="new note description"
+                        android:background="@android:color/transparent"
+                        android:gravity="top|start"
+                        android:hint="@string/note_description"
+                        android:inputType="textMultiLine"
+                        android:textColor="#212529"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/save_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Save"
-        app:layout_constraintEnd_toEndOf="@+id/color_radio_group2"
-        app:layout_constraintStart_toStartOf="@+id/color_radio_group2"
-        app:layout_constraintTop_toBottomOf="@+id/color_radio_group2" />
+            <!-- Deadline Card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/deadline_card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/description_card">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Deadline"
+                        android:textColor="#495057"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/editTextDate4"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:autofillHints="deadline"
+                            android:background="#F8F9FA"
+                            android:hint="MM/DD/YYYY"
+                            android:inputType="date"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
+                            android:textColor="#212529"
+                            android:textSize="16sp" />
+
+                        <Button
+                            android:id="@+id/buttonPickDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="8dp"
+                            android:backgroundTint="@color/theme_primary"
+                            android:text="Pick Date"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Color Selection Card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/color_card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/deadline_card">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/color_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Color Label"
+                        android:textColor="#495057"
+                        android:textSize="14sp" />
+
+                    <RadioGroup
+                        android:id="@+id/color_radio_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/radio_red"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:buttonTint="@color/red_label"
+                            android:text="Red"
+                            android:textColor="@color/red_label"
+                            android:textSize="14sp" />
+
+                        <RadioButton
+                            android:id="@+id/radio_blue"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:buttonTint="@color/blue_label"
+                            android:text="Blue"
+                            android:textColor="@color/blue_label"
+                            android:textSize="14sp" />
+
+                        <RadioButton
+                            android:id="@+id/radio_green"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:buttonTint="@color/green_label"
+                            android:text="Green"
+                            android:textColor="@color/green_label"
+                            android:textSize="14sp" />
+                    </RadioGroup>
+
+                    <RadioGroup
+                        android:id="@+id/color_radio_group2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/radio_yellow"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:buttonTint="@color/yellow_label"
+                            android:text="Yellow"
+                            android:textColor="@color/yellow_label"
+                            android:textSize="14sp" />
+
+                        <RadioButton
+                            android:id="@+id/radio_purple"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:buttonTint="@color/purple_label"
+                            android:text="Purple"
+                            android:textColor="@color/purple_label"
+                            android:textSize="14sp" />
+
+                        <RadioButton
+                            android:id="@+id/radio_orange"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:buttonTint="@color/orange_label"
+                            android:text="Orange"
+                            android:textColor="@color/orange_label"
+                            android:textSize="14sp" />
+                    </RadioGroup>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Save Button -->
+            <Button
+                android:id="@+id/save_button"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp"
+                android:elevation="2dp"
+                android:text="Save Note"
+                android:backgroundTint="@color/theme_primary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/color_card" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

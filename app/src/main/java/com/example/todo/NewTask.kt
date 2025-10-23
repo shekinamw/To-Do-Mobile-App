@@ -110,8 +110,8 @@ class NewTask : AppCompatActivity() {
                 // Set color based on selection
                 selectedColor = when (checkedId) {
                     R.id.radio_red -> "#FF6B6B"
-                    R.id.radio_blue -> "#4ECDC4"
-                    R.id.radio_green -> "#95E1D3"
+                    R.id.radio_blue -> "#69A3E1"
+                    R.id.radio_green -> "#5CE65C"
                     else -> "#FF6B6B"
                 }
             }
@@ -124,7 +124,7 @@ class NewTask : AppCompatActivity() {
 
                 // Set color based on selection
                 selectedColor = when (checkedId) {
-                    R.id.radio_yellow -> "#FFE66D"
+                    R.id.radio_yellow -> "#FFEF00"
                     R.id.radio_purple -> "#B388FF"
                     R.id.radio_orange -> "#FF9F43"
                     else -> "#FFE66D"

@@ -5,74 +5,110 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="#F8F9FA"
+    tools:context=".MainActivity"
+    tools:ignore="MissingClass">
 
-    <TextView
+    <!--  Toolbar -->
+    <Toolbar
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:background="#36013f"
-        android:text="To-Do App"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="34sp"
+        android:layout_height="64dp"
+        android:background="@color/theme_primary"
+        android:elevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.888"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="My Notes"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-    <SearchView
-        android:id="@+id/search_bar"
-        android:layout_width="360dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="13dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:background="#FFDDDDDD"
-        app:layout_constraintEnd_toEndOf="@+id/header"
-        app:layout_constraintHorizontal_bias="0.642"
-        app:layout_constraintStart_toStartOf="@+id/header"
-        app:layout_constraintTop_toBottomOf="@+id/header"
-        app:layout_constraintVertical_bias="0.021" />
+        <Button
+            android:id="@+id/addTaskButton"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/theme_primary"
+            android:elevation="0dp"
+            android:stateListAnimator="@null"
+            android:text="+"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+    </Toolbar>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
+    <!-- Search Bar Container -->
+    <LinearLayout
+        android:id="@+id/search_container"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/white"
+        android:elevation="2dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header">
+
+        <SearchView
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@android:color/white"
+            android:queryHint="Search notes..." />
+    </LinearLayout>
+
+    <!-- RecyclerView Container -->
+    <LinearLayout
+        android:id="@+id/recycler_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:clickable="true"
-        android:contentDescription="TODO"
+        android:background="@android:color/white"
+        android:elevation="2dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/my_recycler_view"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/my_recycler_view"
-        app:layout_constraintTop_toBottomOf="@+id/my_recycler_view"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_container">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/my_recycler_view"
-        android:layout_width="320dp"
-        android:layout_height="437dp"
-        android:layout_marginTop="52dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/my_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:padding="8dp"
+            android:scrollbars="vertical" />
 
-        app:layout_constraintEnd_toEndOf="@+id/search_bar"
-        app:layout_constraintHorizontal_bias="0.675"
-        app:layout_constraintStart_toStartOf="@+id/search_bar"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar" />
+        <!-- Empty State inside container so it shows properly -->
+        <TextView
+            android:id="@+id/empty_state_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="No notes to display"
+            android:textColor="#6C757D"
+            android:textSize="18sp"
+            android:visibility="gone" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/empty_state_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="No notes to display"
-        android:textSize="18sp"
-        app:layout_constraintTop_toTopOf="@+id/my_recycler_view"
-        app:layout_constraintBottom_toBottomOf="@+id/my_recycler_view"
-        app:layout_constraintStart_toStartOf="@+id/my_recycler_view"
-        app:layout_constraintEnd_toEndOf="@+id/my_recycler_view"
-        />
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
