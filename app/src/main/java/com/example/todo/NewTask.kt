@@ -23,6 +23,7 @@ class NewTask : AppCompatActivity() {
     private lateinit var titleInput: EditText
     private lateinit var descriptionInput: EditText
     private lateinit var deadlineInput: EditText
+    private lateinit var pickDateButton : Button
     private lateinit var colorRadioGroup1: RadioGroup
     private lateinit var colorRadioGroup2: RadioGroup
     private lateinit var myDB: MyDatabaseHelper
@@ -42,20 +43,7 @@ class NewTask : AppCompatActivity() {
             insets
         }
 
-        //Calender
-        //dateText = findViewById(R.id.editTextDate4)
 
-        val calender = Calendar.getInstance()
-        val year = calender.get(Calendar.YEAR)
-        val month = calender.get(Calendar.MONTH)
-        val day = calender.get(Calendar.DAY_OF_MONTH)
-
-        pickDateBtn.setOnClickListener{
-            val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener{view, mYear, mMonth, mDay ->
-                //Set date textView
-                deadlineInput.setText("" + mDay + "/" + mMonth + "/" + mYear)
-            }, year, month, day)
-        }
 
         // Initialize database helper
         myDB = MyDatabaseHelper(this)
@@ -64,6 +52,7 @@ class NewTask : AppCompatActivity() {
         titleInput = findViewById(R.id.new_note_title)
         descriptionInput = findViewById(R.id.new_note_description)
         deadlineInput = findViewById(R.id.editTextDate4)
+        pickDateButton = findViewById(R.id.buttonPickDate)
         colorRadioGroup1 = findViewById(R.id.color_radio_group)
         colorRadioGroup2 = findViewById(R.id.color_radio_group2)
 
@@ -90,6 +79,21 @@ class NewTask : AppCompatActivity() {
             } else {
                 addTask()
             }
+        }
+
+        //Pick Date Button Calender Dialogue
+        val calender = Calendar.getInstance()
+        val year = calender.get(Calendar.YEAR)
+        val month = calender.get(Calendar.MONTH)
+        val day = calender.get(Calendar.DAY_OF_MONTH)
+
+        pickDateButton.setOnClickListener{
+            val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener{view, mYear, mMonth, mDay ->
+                //Set date textView
+                deadlineInput.setText("" + mDay + "/" + mMonth + "/" + mYear)
+            }, year, month, day)
+            //show dialogue box
+            dpd.show()
         }
     }
 
