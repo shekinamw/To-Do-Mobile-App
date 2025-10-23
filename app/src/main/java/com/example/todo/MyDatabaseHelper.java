@@ -1,8 +1,11 @@
 package com.example.todo;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -43,4 +46,139 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
+
+    /**
+     * CREATE - Add a new task to the database
+     * @param title Task title (required)
+     * @param description Task description
+     * @param deadline Task deadline
+     * @param color Task color (hex string)
+     * @return row ID of the newly inserted row, or -1 if an error occurred
+     */
+    public long addTask(String title, String description, String deadline, String color) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_TITLE, title);
+        cv.put(COLUMN_DESCRIPTION, description);
+        cv.put(COLUMN_DEADLINE, deadline);
+        cv.put(COLUMN_COLOR, color);
+
+        long result = db.insert(TABLE_NAME, null, cv);
+
+        if (result == -1) {
+            Toast.makeText(context, "Failed to add task", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Task saved successfully!", Toast.LENGTH_SHORT).show();
+        }
+
+        return result;
+    }
+
+    /**
+     * READ - Get all tasks from the database ordered by ID descending (newest first)
+     * @return Cursor containing all tasks
+     */
+    public Cursor getAllTasks() {
+        String query = "SELECT * FROM " + TABLE_NAME + " ORDER BY " + COLUMN_ID + " DESC";
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if (db != null) {
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
+    /**
+     * READ - Search tasks by title
+     * @param searchQuery The search term to filter by title
+     * @return Cursor containing matching tasks
+     */
+    public Cursor searchTasksByTitle(String searchQuery) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_NAME +
+                " WHERE " + COLUMN_TITLE + " LIKE ? ORDER BY " + COLUMN_ID + " DESC";
+
+        Cursor cursor = null;
+        if (db != null) {
+            cursor = db.rawQuery(query, new String[]{"%" + searchQuery + "%"});
+        }
+        return cursor;
+    }
+
+    /**
+     * READ - Get a single task by ID
+     * @param id Task ID
+     * @return Cursor containing the task data
+     */
+    public Cursor getTaskById(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+
+        if (db != null) {
+            cursor = db.query(TABLE_NAME, null, COLUMN_ID + "=?",
+                    new String[]{id}, null, null, null);
+        }
+        return cursor;
+    }
+
+    /**
+     * UPDATE - Update an existing task
+     * @param id Task ID
+     * @param title New title
+     * @param description New description
+     * @param deadline New deadline
+     * @param color New color
+     */
+    public void updateTask(String id, String title, String description, String deadline, String color) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_TITLE, title);
+        cv.put(COLUMN_DESCRIPTION, description);
+        cv.put(COLUMN_DEADLINE, deadline);
+        cv.put(COLUMN_COLOR, color);
+
+        long result = db.update(TABLE_NAME, cv, COLUMN_ID + "=?", new String[]{id});
+
+        if (result == -1) {
+            Toast.makeText(context, "Failed to update task", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Task updated successfully!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * DELETE - Delete a single task
+     * @param id Task ID to delete
+     */
+    public void deleteTask(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.delete(TABLE_NAME, COLUMN_ID + "=?", new String[]{id});
+
+        if (result == -1) {
+            Toast.makeText(context, "Failed to delete task", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Task deleted successfully!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * DELETE - Delete all tasks
+     */
+    public void deleteAllTasks() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_NAME);
+        Toast.makeText(context, "All tasks deleted!", Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Get column name constants for use in adapters
+     */
+    public static String getColumnId() { return COLUMN_ID; }
+    public static String getColumnTitle() { return COLUMN_TITLE; }
+    public static String getColumnDescription() { return COLUMN_DESCRIPTION; }
+    public static String getColumnDeadline() { return COLUMN_DEADLINE; }
+    public static String getColumnColor() { return COLUMN_COLOR; }
 }
