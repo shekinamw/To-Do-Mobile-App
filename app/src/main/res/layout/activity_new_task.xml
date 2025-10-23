@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:contentDescription="Back"
+        android:contentDescription="@string/back_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,7 +24,7 @@
         android:id="@+id/textView"
         android:layout_width="326dp"
         android:layout_height="34dp"
-        android:text="Create a new task"
+        android:text="@string/create_new_task"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +38,7 @@
         android:layout_width="309dp"
         android:layout_height="42dp"
         android:layout_marginTop="48dp"
-        android:autofillHints="new note title"
+        android:autofillHints="@string/note_title_hint"
         android:ems="10"
         android:hint="@string/note_title"
         android:inputType="text"
@@ -52,7 +52,7 @@
         android:layout_width="309dp"
         android:layout_height="42dp"
         android:layout_marginTop="12dp"
-        android:autofillHints="new note description"
+        android:autofillHints="@string/note_description_hint"
         android:ems="10"
         android:hint="@string/note_description"
         android:inputType="textMultiLine"
@@ -67,7 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="16dp"
         android:layout_marginTop="24dp"
-        android:text="Enter deadline:"
+        android:text="@string/deadline_label"
         app:layout_constraintEnd_toStartOf="@+id/editTextDate4"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/new_note_description"
@@ -80,9 +80,9 @@
         android:layout_height="39dp"
         android:layout_marginStart="150dp"
         android:layout_marginTop="24dp"
-        android:autofillHints="deadline"
+        android:autofillHints="@string/deadline_autofill"
         android:ems="10"
-        android:hint="MM/DD/YYYY"
+        android:hint="@string/deadline_hint"
         android:inputType="date"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/new_note_description" />
@@ -93,7 +93,7 @@
         android:layout_height="45dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
-        android:text="Pick Date"
+        android:text="@string/pick_date"
         android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/editTextDate4"
         app:layout_constraintTop_toBottomOf="@+id/new_note_description" />
@@ -103,7 +103,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Select Color:"
+        android:text="@string/color_label"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/editTextDate4" />
@@ -122,7 +122,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="#FF6B6B"
-            android:text="Red"
+            android:text="@string/color_red"
             android:textColor="#FF6B6B" />
 
         <RadioButton
@@ -131,7 +131,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:buttonTint="#055DE4"
-            android:text="Blue"
+            android:text="@string/color_blue"
             android:textColor="#2F6BE6" />
 
         <RadioButton
@@ -140,7 +140,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:buttonTint="#50E956"
-            android:text="Green"
+            android:text="@string/color_green"
             android:textColor="#37E437" />
 
     </RadioGroup>
@@ -159,7 +159,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="#F2D130"
-            android:text="Yellow"
+            android:text="@string/color_yellow"
             android:textColor="#FAD52F" />
 
         <RadioButton
@@ -168,7 +168,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:buttonTint="#8745F8"
-            android:text="Purple"
+            android:text="@string/color_purple"
             android:textColor="#8A4CF6" />
 
         <RadioButton
@@ -177,7 +177,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:buttonTint="#FF9F43"
-            android:text="Orange"
+            android:text="@string/color_orange"
             android:textColor="#FF9F43" />
 
     </RadioGroup>
@@ -187,7 +187,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Save"
+        android:text="@string/save_button"
         app:layout_constraintEnd_toEndOf="@+id/color_radio_group2"
         app:layout_constraintStart_toStartOf="@+id/color_radio_group2"
         app:layout_constraintTop_toBottomOf="@+id/color_radio_group2" />
