@@ -1,10 +1,4 @@
-/**
- * Second screen of the App
- * Description: This screen is used to add and save new notes. Each note has a title and a description.
- * The user can select a color for the task and must provide a title to save.
- * Author:
- * Due Date: October 1, 2025 01:59pm
- */
+
 
 package com.example.todo
 

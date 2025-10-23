@@ -1,5 +1,40 @@
 <resources>
     <string name="app_name">ToDo</string>
-    <string name="note_description">Description</string>
+
+    <!-- New Task Screen -->
     <string name="note_title">Title</string>
+    <string name="note_description">Description</string>
+    <string name="deadline_label">Enter deadline:</string>
+    <string name="color_label">Select Color:</string>
+    <string name="save_button">Save</string>
+    <string name="update_button">Update</string>
+    <string name="back_button">Back</string>
+
+    <!-- Main Screen -->
+    <string name="search_hint">Search tasks...</string>
+    <string name="empty_state">No notes to display</string>
+    <string name="no_tasks_found">No tasks found</string>
+    <string name="add_task">Add Task</string>
+
+    <!-- Color Options -->
+    <string name="color_red">Red</string>
+    <string name="color_blue">Blue</string>
+    <string name="color_green">Green</string>
+    <string name="color_yellow">Yellow</string>
+    <string name="color_purple">Purple</string>
+    <string name="color_orange">Orange</string>
+
+    <!-- Toast Messages -->
+    <string name="task_saved">Task saved successfully!</string>
+    <string name="task_updated">Task updated successfully!</string>
+    <string name="task_deleted">Task deleted successfully!</string>
+    <string name="failed_to_save">Failed to add task</string>
+    <string name="failed_to_update">Failed to update task</string>
+    <string name="failed_to_delete">Failed to delete task</string>
+    <string name="title_required">Error: Title is required!</string>
+
+    <!-- Task Details -->
+    <string name="deadline_prefix">Deadline: </string>
+    <string name="task_title_label">Task Title</string>
+    <string name="task_description_label">Task Description</string>
 </resources>
