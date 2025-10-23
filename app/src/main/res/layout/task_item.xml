@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/task_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -18,31 +19,34 @@
             android:id="@+id/task_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Task Title"
+            android:text="@string/task_title_label"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="#000000"
-            android:paddingBottom="4dp" />
+            android:paddingBottom="4dp"
+            tools:text="Task Title" />
 
         <TextView
             android:id="@+id/task_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Task Description"
+            android:text="@string/task_description_label"
             android:textSize="14sp"
             android:textColor="#666666"
             android:paddingBottom="4dp"
             android:maxLines="3"
-            android:ellipsize="end" />
+            android:ellipsize="end"
+            tools:text="Task Description" />
 
         <TextView
             android:id="@+id/task_deadline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Deadline: "
+            android:text="@string/deadline_prefix"
             android:textSize="12sp"
             android:textColor="#999999"
-            android:textStyle="italic" />
+            android:textStyle="italic"
+            tools:text="Deadline: 10/23/2025" />
 
     </LinearLayout>
 
