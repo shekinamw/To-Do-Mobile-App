@@ -1,10 +1,4 @@
-/**
- * Home Page of the App
- * Description: The home page displays all saved notes with their colors, allows the user to add
- * new notes and search existing notes by title.
- * Author:
- * Due Date: October 1, 2025 01:59pm
- */
+
 package com.example.todo
 
 import android.content.Intent
