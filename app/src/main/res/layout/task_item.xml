@@ -6,48 +6,110 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
+    app:cardCornerRadius="12dp"
+    app:cardElevation="3dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="12dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/task_title"
+        <!-- Color indicator bar at top -->
+        <View
+            android:id="@+id/color_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="#FF6B6B" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/task_title_label"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            android:paddingBottom="4dp"
-            tools:text="Task Title" />
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <TextView
-            android:id="@+id/task_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/task_description_label"
-            android:textSize="14sp"
-            android:textColor="#666666"
-            android:paddingBottom="4dp"
-            android:maxLines="3"
-            android:ellipsize="end"
-            tools:text="Task Description" />
+            <!-- Header with title and @TO DO: delete button -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-        <TextView
-            android:id="@+id/task_deadline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/deadline_prefix"
-            android:textSize="12sp"
-            android:textColor="#999999"
-            android:textStyle="italic"
-            tools:text="Deadline: 10/23/2025" />
+                <TextView
+                    android:id="@+id/task_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/task_title_label"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#212529"
+                    android:paddingEnd="8dp"
+                    tools:text="Task Title" />
 
+                <!-- @TO DO: Delete button -->
+                <ImageButton
+                    android:id="@+id/delete_task_button"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Delete task"
+                    android:padding="8dp"
+                    android:src="@android:drawable/ic_menu_delete"
+                    android:tint="#DC3545" />
+            </LinearLayout>
+
+            <!-- Description -->
+            <TextView
+                android:id="@+id/task_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/task_description_label"
+                android:textSize="14sp"
+                android:textColor="#6C757D"
+                android:maxLines="3"
+                android:ellipsize="end"
+                tools:text="Task Description" />
+
+            <!-- @TO DO: Image preview (will only appear if there is an image) -->
+            <ImageView
+                android:id="@+id/task_image"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="12dp"
+                android:adjustViewBounds="true"
+                android:background="#F8F9FA"
+                android:contentDescription="Task image"
+                android:scaleType="centerCrop"
+                android:visibility="gone" />
+
+            <!-- Deadline -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@android:drawable/ic_menu_recent_history"
+                    android:tint="#ADB5BD"
+                    android:contentDescription="Deadline icon" />
+
+                <TextView
+                    android:id="@+id/task_deadline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="@string/deadline_prefix"
+                    android:textSize="13sp"
+                    android:textColor="#ADB5BD"
+                    tools:text="Deadline: 10/23/2025" />
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

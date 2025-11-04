@@ -145,6 +145,69 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <!-- Image Upload Card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/image_card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/description_card">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Upload image (Optional)"
+                        android:textColor="#495057"
+                        android:textSize="14sp" />
+
+
+                    <!-- TODO: Select Image Button -->
+                    <Button
+                        android:id="@+id/select_image_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="8dp"
+                        android:backgroundTint="#6C757D"
+                        android:drawableLeft="@android:drawable/ic_menu_gallery"
+                        android:drawablePadding="8dp"
+                        android:gravity="center"
+                        android:text="Select Image"
+                        android:textSize="14sp" />
+
+                    <!-- TODO: Selected Image Preview -->
+                    <ImageView
+                        android:id="@+id/selected_image_preview"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginTop="12dp"
+                        android:adjustViewBounds="true"
+                        android:background="#F8F9FA"
+                        android:contentDescription="Selected image preview"
+                        android:scaleType="centerCrop"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/image_name_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textColor="#6C757D"
+                        android:textSize="12sp"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
             <!-- Deadline Card -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/deadline_card"
@@ -155,7 +218,7 @@
                 app:cardElevation="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/description_card">
+                app:layout_constraintTop_toBottomOf="@+id/image_card">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -178,7 +241,7 @@
                         android:layout_marginTop="8dp"
                         android:orientation="horizontal">
 
-                        <EditText
+                        <TextView
                             android:id="@+id/editTextDate4"
                             android:layout_width="0dp"
                             android:layout_height="48dp"
@@ -186,11 +249,11 @@
                             android:autofillHints="deadline"
                             android:background="#F8F9FA"
                             android:hint="MM/DD/YYYY"
-                            android:inputType="date"
                             android:paddingStart="12dp"
                             android:paddingEnd="12dp"
                             android:textColor="#212529"
-                            android:textSize="16sp" />
+                            android:textSize="16sp"
+                            android:gravity="center_vertical" />
 
                         <Button
                             android:id="@+id/buttonPickDate"
@@ -316,9 +379,9 @@
                 android:layout_height="56dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/theme_primary"
                 android:elevation="2dp"
                 android:text="Save Note"
-                android:backgroundTint="@color/theme_primary"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
