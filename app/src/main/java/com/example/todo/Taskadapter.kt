@@ -1,14 +1,19 @@
 package com.example.todo
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import java.io.File
 
 class TaskAdapter(
     private val context: Context,
@@ -16,7 +21,8 @@ class TaskAdapter(
     private var taskTitles: ArrayList<String>,
     private var taskDescriptions: ArrayList<String>,
     private var taskDeadlines: ArrayList<String>,
-    private var taskColors: ArrayList<String>
+    private var taskColors: ArrayList<String>,
+    private var taskImages: ArrayList<String>
 ) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -24,6 +30,8 @@ class TaskAdapter(
         val titleText: TextView = itemView.findViewById(R.id.task_title)
         val descriptionText: TextView = itemView.findViewById(R.id.task_description)
         val deadlineText: TextView = itemView.findViewById(R.id.task_deadline)
+        val taskImageView: ImageView = itemView.findViewById(R.id.task_image)
+        val deleteButton: ImageButton = itemView.findViewById(R.id.delete_task_button)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
@@ -37,6 +45,7 @@ class TaskAdapter(
         val deadline = taskDeadlines[position]
         val color = taskColors[position]
         val id = taskIds[position]
+        val imagePath = taskImages[position]
 
         // Set task data
         holder.titleText.text = title
@@ -44,7 +53,7 @@ class TaskAdapter(
 
         // Set deadline text
         if (deadline.isNotEmpty()) {
-            holder.deadlineText.text = "Deadline: $deadline"
+            holder.deadlineText.text = "${context.getString(R.string.deadline_prefix)}$deadline"
             holder.deadlineText.visibility = View.VISIBLE
         } else {
             holder.deadlineText.visibility = View.GONE
@@ -59,27 +68,26 @@ class TaskAdapter(
             holder.taskCard.setCardBackgroundColor(Color.parseColor("#FF6B6B"))
         }
 
-        // REQUIREMENT: Set size of task tile based on text size
-        // Adjust card height based on content length
-        val titleLength = title.length
-        val descriptionLength = description.length
-        val totalLength = titleLength + descriptionLength
+        // REQUIREMENT: Display task image if available
+        if (imagePath.isNotEmpty() && File(imagePath).exists()) {
+            try {
+                val bitmap = BitmapFactory.decodeFile(imagePath)
+                holder.taskImageView.setImageBitmap(bitmap)
+                holder.taskImageView.visibility = View.VISIBLE
+            } catch (e: Exception) {
+                holder.taskImageView.visibility = View.GONE
+                e.printStackTrace()
+            }
+        } else {
+            holder.taskImageView.visibility = View.GONE
+        }
 
-        // Calculate dynamic height based on content
-        val baseHeight = 100 // Minimum height in dp
-        val additionalHeight = (totalLength / 20) * 10 // Add 10dp for every 20 characters
-        val calculatedHeight = baseHeight + additionalHeight
+        // Handle delete button click
+        holder.deleteButton.setOnClickListener {
+            showDeleteConfirmationDialog(id, position)
+        }
 
-        // Convert dp to pixels
-        val scale = context.resources.displayMetrics.density
-        val heightInPixels = (calculatedHeight * scale + 0.5f).toInt()
-
-        // Set the height
-        val layoutParams = holder.taskCard.layoutParams
-        layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT // Use wrap_content for better text display
-        holder.taskCard.layoutParams = layoutParams
-
-        // Handle click to edit task
+        // Handle card click to edit task
         holder.taskCard.setOnClickListener {
             val intent = Intent(context, NewTask::class.java)
             intent.putExtra("task_id", id)
@@ -87,12 +95,68 @@ class TaskAdapter(
             intent.putExtra("task_description", description)
             intent.putExtra("task_deadline", deadline)
             intent.putExtra("task_color", color)
+            intent.putExtra("task_image", imagePath)
             context.startActivity(intent)
         }
     }
 
     override fun getItemCount(): Int {
         return taskIds.size
+    }
+
+    /**
+     * Show confirmation dialog before deleting a task
+     */
+    private fun showDeleteConfirmationDialog(taskId: String, position: Int) {
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle(context.getString(R.string.delete_task_title))
+        builder.setMessage(context.getString(R.string.delete_task_message))
+
+        builder.setPositiveButton(context.getString(R.string.delete)) { dialog, _ ->
+            deleteTask(taskId, position)
+            dialog.dismiss()
+        }
+
+        builder.setNegativeButton(context.getString(R.string.cancel)) { dialog, _ ->
+            dialog.dismiss()
+        }
+
+        builder.create().show()
+    }
+
+    /**
+     * Delete task from database and update UI
+     */
+    private fun deleteTask(taskId: String, position: Int) {
+        val myDB = MyDatabaseHelper(context)
+
+        // Delete image file if exists
+        val imagePath = taskImages[position]
+        if (imagePath.isNotEmpty()) {
+            try {
+                val file = File(imagePath)
+                if (file.exists()) {
+                    file.delete()
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+
+        // Delete from database
+        myDB.deleteTask(taskId)
+
+        // Remove from lists
+        taskIds.removeAt(position)
+        taskTitles.removeAt(position)
+        taskDescriptions.removeAt(position)
+        taskDeadlines.removeAt(position)
+        taskColors.removeAt(position)
+        taskImages.removeAt(position)
+
+        // Notify adapter
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, taskIds.size)
     }
 
     /**
@@ -103,13 +167,15 @@ class TaskAdapter(
         newTitles: ArrayList<String>,
         newDescriptions: ArrayList<String>,
         newDeadlines: ArrayList<String>,
-        newColors: ArrayList<String>
+        newColors: ArrayList<String>,
+        newImages: ArrayList<String>
     ) {
         taskIds = newIds
         taskTitles = newTitles
         taskDescriptions = newDescriptions
         taskDeadlines = newDeadlines
         taskColors = newColors
+        taskImages = newImages
         notifyDataSetChanged()
     }
 
@@ -118,16 +184,17 @@ class TaskAdapter(
      */
     fun filter(query: String, allIds: ArrayList<String>, allTitles: ArrayList<String>,
                allDescriptions: ArrayList<String>, allDeadlines: ArrayList<String>,
-               allColors: ArrayList<String>) {
+               allColors: ArrayList<String>, allImages: ArrayList<String>) {
 
         if (query.isEmpty()) {
-            updateData(allIds, allTitles, allDescriptions, allDeadlines, allColors)
+            updateData(allIds, allTitles, allDescriptions, allDeadlines, allColors, allImages)
         } else {
             val filteredIds = ArrayList<String>()
             val filteredTitles = ArrayList<String>()
             val filteredDescriptions = ArrayList<String>()
             val filteredDeadlines = ArrayList<String>()
             val filteredColors = ArrayList<String>()
+            val filteredImages = ArrayList<String>()
 
             for (i in allTitles.indices) {
                 if (allTitles[i].lowercase().contains(query.lowercase())) {
@@ -136,11 +203,11 @@ class TaskAdapter(
                     filteredDescriptions.add(allDescriptions[i])
                     filteredDeadlines.add(allDeadlines[i])
                     filteredColors.add(allColors[i])
+                    filteredImages.add(allImages[i])
                 }
             }
 
-            updateData(filteredIds, filteredTitles, filteredDescriptions, filteredDeadlines, filteredColors)
+            updateData(filteredIds, filteredTitles, filteredDescriptions, filteredDeadlines, filteredColors, filteredImages)
         }
     }
 }
-

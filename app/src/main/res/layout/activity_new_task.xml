@@ -25,8 +25,8 @@
             android:layout_height="48dp"
             android:layout_marginStart="8dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Back"
-            android:tint="@color/white"
+            android:contentDescription="@string/back_description"
+            app:tint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -39,7 +39,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="sans-serif-medium"
-            android:text="Create New Note"
+            android:text="@string/create_new_task"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -86,7 +86,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-medium"
-                        android:text="Title"
+                        android:text="@string/note_title"
                         android:textColor="#495057"
                         android:textSize="14sp" />
 
@@ -95,7 +95,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:autofillHints="new note title"
+                        android:autofillHints="@string/note_title_hint"
                         android:background="@android:color/transparent"
                         android:hint="@string/note_title"
                         android:inputType="text"
@@ -126,7 +126,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-medium"
-                        android:text="Description"
+                        android:text="@string/note_description"
                         android:textColor="#495057"
                         android:textSize="14sp" />
 
@@ -135,7 +135,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="120dp"
                         android:layout_marginTop="8dp"
-                        android:autofillHints="new note description"
+                        android:autofillHints="@string/note_description_hint"
                         android:background="@android:color/transparent"
                         android:gravity="top|start"
                         android:hint="@string/note_description"
@@ -167,12 +167,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-medium"
-                        android:text="Upload image (Optional)"
+                        android:text="@string/upload_image_optional"
                         android:textColor="#495057"
                         android:textSize="14sp" />
 
-
-                    <!-- TODO: Select Image Button -->
+                    <!-- Select Image Button -->
                     <Button
                         android:id="@+id/select_image_button"
                         android:layout_width="match_parent"
@@ -182,10 +181,10 @@
                         android:drawableLeft="@android:drawable/ic_menu_gallery"
                         android:drawablePadding="8dp"
                         android:gravity="center"
-                        android:text="Select Image"
+                        android:text="@string/select_image"
                         android:textSize="14sp" />
 
-                    <!-- TODO: Selected Image Preview -->
+                    <!-- Selected Image Preview -->
                     <ImageView
                         android:id="@+id/selected_image_preview"
                         android:layout_width="match_parent"
@@ -193,7 +192,7 @@
                         android:layout_marginTop="12dp"
                         android:adjustViewBounds="true"
                         android:background="#F8F9FA"
-                        android:contentDescription="Selected image preview"
+                        android:contentDescription="@string/selected_image_preview"
                         android:scaleType="centerCrop"
                         android:visibility="gone" />
 
@@ -231,7 +230,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-medium"
-                        android:text="Deadline"
+                        android:text="@string/deadline_label"
                         android:textColor="#495057"
                         android:textSize="14sp" />
 
@@ -246,9 +245,9 @@
                             android:layout_width="0dp"
                             android:layout_height="48dp"
                             android:layout_weight="1"
-                            android:autofillHints="deadline"
+                            android:autofillHints="@string/deadline_autofill"
                             android:background="#F8F9FA"
-                            android:hint="MM/DD/YYYY"
+                            android:hint="@string/deadline_hint"
                             android:paddingStart="12dp"
                             android:paddingEnd="12dp"
                             android:textColor="#212529"
@@ -261,7 +260,7 @@
                             android:layout_height="48dp"
                             android:layout_marginStart="8dp"
                             android:backgroundTint="@color/theme_primary"
-                            android:text="Pick Date"
+                            android:text="@string/pick_date"
                             android:textSize="14sp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -290,7 +289,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-medium"
-                        android:text="Color Label"
+                        android:text="@string/color_label"
                         android:textColor="#495057"
                         android:textSize="14sp" />
 
@@ -307,7 +306,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:buttonTint="@color/red_label"
-                            android:text="Red"
+                            android:text="@string/color_red"
                             android:textColor="@color/red_label"
                             android:textSize="14sp" />
 
@@ -317,7 +316,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:buttonTint="@color/blue_label"
-                            android:text="Blue"
+                            android:text="@string/color_blue"
                             android:textColor="@color/blue_label"
                             android:textSize="14sp" />
 
@@ -327,7 +326,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:buttonTint="@color/green_label"
-                            android:text="Green"
+                            android:text="@string/color_green"
                             android:textColor="@color/green_label"
                             android:textSize="14sp" />
                     </RadioGroup>
@@ -345,7 +344,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:buttonTint="@color/yellow_label"
-                            android:text="Yellow"
+                            android:text="@string/color_yellow"
                             android:textColor="@color/yellow_label"
                             android:textSize="14sp" />
 
@@ -355,7 +354,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:buttonTint="@color/purple_label"
-                            android:text="Purple"
+                            android:text="@string/color_purple"
                             android:textColor="@color/purple_label"
                             android:textSize="14sp" />
 
@@ -365,7 +364,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:buttonTint="@color/orange_label"
-                            android:text="Orange"
+                            android:text="@string/color_orange"
                             android:textColor="@color/orange_label"
                             android:textSize="14sp" />
                     </RadioGroup>
@@ -381,7 +380,7 @@
                 android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/theme_primary"
                 android:elevation="2dp"
-                android:text="Save Note"
+                android:text="@string/save_button"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"

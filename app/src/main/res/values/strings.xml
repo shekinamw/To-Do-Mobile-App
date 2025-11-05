@@ -3,28 +3,39 @@
     <string name="app_name">ToDo</string>
 
     <!-- Main Screen -->
-    <string name="app_title">To-Do App</string>
-    <string name="search_hint">Search tasks...</string>
+    <string name="app_title">My Notes</string>
+    <string name="add_button_text">+</string>
+    <string name="search_hint">Search notes...</string>
     <string name="empty_state">No notes to display</string>
     <string name="no_tasks_found">No tasks found</string>
-    <string name="add_task">Add Task</string>
     <string name="add_task_description">Add Task</string>
 
     <!-- New Task Screen -->
-    <string name="create_new_task">Create a new task</string>
+    <string name="create_new_task">Create New Note</string>
     <string name="note_title">Title</string>
     <string name="note_description">Description</string>
     <string name="note_title_hint">new note title</string>
     <string name="note_description_hint">new note description</string>
-    <string name="deadline_label">Enter deadline:</string>
+    <string name="deadline_label">Deadline</string>
     <string name="deadline_hint">MM/DD/YYYY</string>
     <string name="deadline_autofill">deadline</string>
     <string name="pick_date">Pick Date</string>
-    <string name="color_label">Select Color:</string>
-    <string name="save_button">Save</string>
+    <string name="color_label">Color Label</string>
+    <string name="save_button">Save Note</string>
     <string name="update_button">Update</string>
     <string name="back_button">Back</string>
     <string name="back_description">Back</string>
+
+    <!-- Image Upload -->
+    <string name="upload_image_optional">Upload image (Optional)</string>
+    <string name="select_image">Select Image</string>
+    <string name="change_image">Change Image</string>
+    <string name="select_image_source">Select Image Source</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="choose_from_gallery">Choose from Gallery</string>
+    <string name="remove_image">Remove Image</string>
+    <string name="selected_image_preview">Selected image preview</string>
+    <string name="task_image_description">Task image</string>
 
     <!-- Color Options -->
     <string name="color_red">Red</string>
@@ -38,6 +49,14 @@
     <string name="task_title_label">Task Title</string>
     <string name="task_description_label">Task Description</string>
     <string name="deadline_prefix">Deadline: </string>
+    <string name="delete_task_description">Delete task</string>
+    <string name="deadline_icon_description">Deadline icon</string>
+
+    <!-- Delete Confirmation Dialog -->
+    <string name="delete_task_title">Delete Task</string>
+    <string name="delete_task_message">Are you sure you want to delete this task?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
 
     <!-- Toast Messages -->
     <string name="task_saved">Task saved successfully!</string>
@@ -48,4 +67,13 @@
     <string name="failed_to_delete">Failed to delete task</string>
     <string name="title_required">Error: Title is required!</string>
     <string name="all_tasks_deleted">All tasks deleted!</string>
+    <string name="no_task_to_delete">No task to delete</string>
+
+    <!-- Image Related Messages -->
+    <string name="image_selected">Image selected successfully</string>
+    <string name="image_removed">Image removed</string>
+    <string name="error_loading_image">Error loading image</string>
+    <string name="error_creating_file">Error creating image file</string>
+    <string name="camera_permission_denied">Camera permission denied</string>
+    <string name="storage_permission_denied">Storage permission denied</string>
 </resources>

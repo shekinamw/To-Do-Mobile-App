@@ -13,7 +13,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     private Context context;
     private static final String DATABASE_NAME = "TaskList.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2; // Incremented version for schema change
     private static final String TABLE_NAME = "my_tasks";
 
     private static final String COLUMN_ID = "id";
@@ -21,6 +21,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_DESCRIPTION = "description";
     private static final String COLUMN_DEADLINE = "deadline";
     private static final String COLUMN_COLOR = "color";
+    private static final String COLUMN_IMAGE = "image"; // New column for image path/URI
 
 
     public MyDatabaseHelper(@Nullable Context context) {
@@ -36,15 +37,18 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                         COLUMN_TITLE + " TEXT, " +
                         COLUMN_DESCRIPTION + " TEXT, " +
                         COLUMN_DEADLINE + " TEXT, " +
-                        COLUMN_COLOR + " TEXT);";
+                        COLUMN_COLOR + " TEXT, " +
+                        COLUMN_IMAGE + " TEXT);"; // Added image column
 
         db.execSQL(query);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
-        onCreate(db);
+        if (oldVersion < 2) {
+            // Add image column to existing table
+            db.execSQL("ALTER TABLE " + TABLE_NAME + " ADD COLUMN " + COLUMN_IMAGE + " TEXT");
+        }
     }
 
     /**
@@ -53,9 +57,10 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
      * @param description Task description
      * @param deadline Task deadline
      * @param color Task color (hex string)
+     * @param imagePath Path or URI to the task image
      * @return row ID of the newly inserted row, or -1 if an error occurred
      */
-    public long addTask(String title, String description, String deadline, String color) {
+    public long addTask(String title, String description, String deadline, String color, String imagePath) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -63,6 +68,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_DESCRIPTION, description);
         cv.put(COLUMN_DEADLINE, deadline);
         cv.put(COLUMN_COLOR, color);
+        cv.put(COLUMN_IMAGE, imagePath);
 
         long result = db.insert(TABLE_NAME, null, cv);
 
@@ -130,8 +136,9 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
      * @param description New description
      * @param deadline New deadline
      * @param color New color
+     * @param imagePath New image path or URI
      */
-    public void updateTask(String id, String title, String description, String deadline, String color) {
+    public void updateTask(String id, String title, String description, String deadline, String color, String imagePath) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -139,6 +146,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_DESCRIPTION, description);
         cv.put(COLUMN_DEADLINE, deadline);
         cv.put(COLUMN_COLOR, color);
+        cv.put(COLUMN_IMAGE, imagePath);
 
         long result = db.update(TABLE_NAME, cv, COLUMN_ID + "=?", new String[]{id});
 
@@ -181,4 +189,5 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public static String getColumnDescription() { return COLUMN_DESCRIPTION; }
     public static String getColumnDeadline() { return COLUMN_DEADLINE; }
     public static String getColumnColor() { return COLUMN_COLOR; }
+    public static String getColumnImage() { return COLUMN_IMAGE; }
 }

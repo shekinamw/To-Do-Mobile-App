@@ -1,4 +1,3 @@
-
 package com.example.todo
 
 import android.content.Intent
@@ -10,12 +9,10 @@ import android.widget.SearchView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.material3.Button
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     private var allTaskDescriptions = ArrayList<String>()
     private var allTaskDeadlines = ArrayList<String>()
     private var allTaskColors = ArrayList<String>()
+    private var allTaskImages = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,10 +51,10 @@ class MainActivity : AppCompatActivity() {
         // Setup RecyclerView
         setupRecyclerView()
 
-        // REQUIREMENT: Display all saved tasks with their colors
+        // REQUIREMENT: Display all saved tasks with their colors and images
         loadTasksFromDatabase()
 
-        // Setup action button to add new tasks
+        // Setup add task button (Button in Toolbar)
         val addButton = findViewById<Button>(R.id.addTaskButton)
         addButton.setOnClickListener {
             val intent = Intent(this, NewTask::class.java)
@@ -83,7 +81,8 @@ class MainActivity : AppCompatActivity() {
             allTaskTitles,
             allTaskDescriptions,
             allTaskDeadlines,
-            allTaskColors
+            allTaskColors,
+            allTaskImages
         )
         recyclerView.adapter = taskAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -100,6 +99,7 @@ class MainActivity : AppCompatActivity() {
         allTaskDescriptions.clear()
         allTaskDeadlines.clear()
         allTaskColors.clear()
+        allTaskImages.clear()
 
         // Query database for all tasks
         val cursor: Cursor? = myDB.getAllTasks()
@@ -120,12 +120,14 @@ class MainActivity : AppCompatActivity() {
                 val description = cursor.getString(cursor.getColumnIndexOrThrow(MyDatabaseHelper.getColumnDescription()))
                 val deadline = cursor.getString(cursor.getColumnIndexOrThrow(MyDatabaseHelper.getColumnDeadline()))
                 val color = cursor.getString(cursor.getColumnIndexOrThrow(MyDatabaseHelper.getColumnColor()))
+                val image = cursor.getString(cursor.getColumnIndexOrThrow(MyDatabaseHelper.getColumnImage()))
 
                 allTaskIds.add(id)
                 allTaskTitles.add(title)
                 allTaskDescriptions.add(description ?: "")
                 allTaskDeadlines.add(deadline ?: "")
                 allTaskColors.add(color ?: "#FF6B6B") // Default to red if no color
+                allTaskImages.add(image ?: "")
             }
             cursor.close()
 
@@ -135,7 +137,8 @@ class MainActivity : AppCompatActivity() {
                 allTaskTitles,
                 allTaskDescriptions,
                 allTaskDeadlines,
-                allTaskColors
+                allTaskColors,
+                allTaskImages
             )
         }
     }
@@ -173,12 +176,13 @@ class MainActivity : AppCompatActivity() {
             allTaskTitles,
             allTaskDescriptions,
             allTaskDeadlines,
-            allTaskColors
+            allTaskColors,
+            allTaskImages
         )
 
         // Show/hide empty state based on filter results
         if (taskAdapter.itemCount == 0) {
-            emptyStateText.text = "No tasks found"
+            emptyStateText.text = getString(R.string.no_tasks_found)
             emptyStateText.visibility = View.VISIBLE
             recyclerView.visibility = View.GONE
         } else {
